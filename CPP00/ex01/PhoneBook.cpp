@@ -6,7 +6,7 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 06:54:58 by rrabeari          #+#    #+#             */
-/*   Updated: 2025/01/15 13:54:43 by rrabeari         ###   ########.fr       */
+/*   Updated: 2025/01/18 08:59:56 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,29 +54,42 @@ void	PhoneBook::add(Contact pers)
 		this->nbr++;
 }
 
+int	PhoneBook::getNbr()
+{
+	return (nbr);
+}
+
+void	PhoneBook::details(int id)
+{
+	Contact 	pers;
+	std::string	tmp;
+
+	if (id > nbr && id <= 8)
+		std::cout << "The number of Contact inside the repository is " << this->nbr << std::endl;
+	else if (id <= nbr && id > 0)
+	{
+		std::cout << "First Name : " << this->repository[id - 1].getFirstName() << std::endl;
+		std::cout << "Last Name : " << this->repository[id - 1].getLastName() << std::endl;
+		std::cout << "Nick Name : " << this->repository[id - 1].getNickName() << std::endl;
+		std::cout << "Phone Number : " << this->repository[id - 1].getPhoneNum() << std::endl;
+		std::cout << "Darkest Secret : " << this->repository[id - 1].getDarkSecret() << std::endl;
+	}
+	else
+		std::cout << "ID must be included inside the range 1 - 8" << std::endl;
+}
+
 void	PhoneBook::show(int id) const
 {
 	Contact 	pers;
 	std::string	tmp;
 
-	if (id >= nbr && id < 8)
-		std::cout << "The number of Contact inside the repository is " << this->nbr << std::endl;
-	else if (id < nbr && id >=0)
-	{
-		pers = this->repository[id];
-		std::cout << std::setfill(' ') << std::setw(11) << id << "|";
-		tmp = pers.getFirstName();
-		table_format(tmp);
-		tmp = pers.getLastName();
-		table_format(tmp);
-		tmp = pers.getNickName();
-		table_format(tmp);
-		tmp = pers.getPhoneNum();
-		table_format(tmp);
-		tmp = pers.getDarkSecret();
-		table_format(tmp);
-		std::cout << std::endl;
-	}
-	else
-		std::cout << "ID must be included inside the range 0 - 7" << std::endl;
+	pers = this->repository[id];
+	std::cout << std::setfill(' ') << std::setw(11) << id + 1 << "|";
+	tmp = pers.getFirstName();
+	table_format(tmp);
+	tmp = pers.getLastName();
+	table_format(tmp);
+	tmp = pers.getNickName();
+	table_format(tmp);
+	std::cout << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 15:32:28 by rrabeari          #+#    #+#             */
-/*   Updated: 2025/01/15 14:28:48 by rrabeari         ###   ########.fr       */
+/*   Updated: 2025/01/20 07:04:20 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 #include "include/PhoneBook.hpp"
 #include <iostream>
 #include <limits>
+
+std::string trim(const std::string & source) {
+    std::string s(source);
+    s.erase(0,s.find_first_not_of(" \n\r\t"));
+    s.erase(s.find_last_not_of(" \n\r\t")+1);
+    return s;
+}
 
 std::string	prompt(std::string cmd)
 {
@@ -24,11 +31,14 @@ std::string	prompt(std::string cmd)
 	{
 		std::cout << cmd << std::endl;
 		getline(std::cin, value);
-		if (!value.empty())
+		if(value.find_first_not_of(" \t\n\r") == std::string::npos && !value.empty())
+			std::cout << "Must contain other than space or tab" << std::endl;
+		else if (!value.empty())
 			valide_input = true;
 		else
-			std::cout << "Cannot be empty!!" << std::endl;
+			std::cout << "Cannot be empty!" << std::endl;
 	} while (!valide_input);
+	value = trim(value);
 	return (value);
 }
 
@@ -76,8 +86,14 @@ void	search(PhoneBook &phoneBook)
 {
 	int	id;
 
-	id = get_int("Which ID would you search ? from 0 - 7");
-	phoneBook.show(id);
+	id = 0;
+	do
+	{
+		phoneBook.show(id++);
+	} while (id < phoneBook.getNbr());
+
+	id = get_int("Which ID would you search ? from 1 - 8");
+	phoneBook.details(id);
 }
 
 int	main()

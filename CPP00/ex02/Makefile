@@ -6,7 +6,7 @@ OBJ = $(SRC:%.cpp=%.o)
 
 CC = c++
 
-FLAGS = -std=c++98 #-Wall -Wextra -Werror
+FLAGS = -std=c++98 -Wall -Wextra -Werror
 
 $(NAME) : $(OBJ)
 	$(CC) $(FLAGS) $(SRC) -o $@

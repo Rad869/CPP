@@ -23,3 +23,5 @@ fclean: clean
 	rm -rf $(NAME)
 
 re: fclean $(NAME)
+
+.PHONY: re clean all fclean

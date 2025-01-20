@@ -6,7 +6,7 @@
 /*   By: rrabeari <rrabeari@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 06:30:43 by rrabeari          #+#    #+#             */
-/*   Updated: 2025/01/15 10:40:40 by rrabeari         ###   ########.fr       */
+/*   Updated: 2025/01/18 08:28:26 by rrabeari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ class PhoneBook
 		~PhoneBook();
 		void	add(Contact pers);
 		void	show(int id) const;
+		int		getNbr();
+		void	details(int id);
 };
 
 
